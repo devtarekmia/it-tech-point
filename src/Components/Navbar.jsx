@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import logo from '../logo.svg';
 import { HiMenuAlt4, HiX, HiOutlineChevronDoubleUp } from "react-icons/hi";
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
@@ -20,17 +20,17 @@ function Navbar() {
   };
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (latest < 0.10) {
+    if (latest < 0.01) {
       setBg(false);
       setShow(true);
       setFoot(false)
-    } else if (latest > 0.10 && latest < previousScrollYProgressRef.current) {
+    } else if (latest > 0.01 && latest < previousScrollYProgressRef.current) {
       // Scrolling downward
       setBg(true);
       setShow(true);
       setFoot(true)
       previousScrollYProgressRef.current = latest;
-    } else if (latest > 0.10 && latest > previousScrollYProgressRef.current) {
+    } else if (latest > 0.01 && latest > previousScrollYProgressRef.current) {
       // Scrolling upward
       setShow(false);
       previousScrollYProgressRef.current = latest;
@@ -60,6 +60,45 @@ function Navbar() {
       name: 'Contact Us',
     }
   ]
+
+  const toggleTheme = () => {
+    if (document.documentElement.classList.contains('dark')) {
+      document.documentElement.classList.remove('dark');
+      localStorage.theme = 'light';
+    } else {
+      document.documentElement.classList.add('dark');
+      localStorage.theme = 'dark';
+    }
+  };
+
+  useEffect(() => {
+    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+    const currentTheme = localStorage.theme;
+
+    const updateTheme = (event) => {
+      if (event.matches) {
+        document.documentElement.classList.add('dark');
+        localStorage.theme = 'dark';
+      } else {
+        document.documentElement.classList.remove('dark');
+        localStorage.theme = 'light';
+      }
+    };
+
+    prefersDarkMode.addListener(updateTheme);
+
+    if (currentTheme === 'dark' || (!currentTheme && prefersDarkMode.matches)) {
+      document.documentElement.classList.add('dark');
+      localStorage.theme = 'dark';
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.theme = 'light';
+    }
+
+    return () => {
+      prefersDarkMode.removeListener(updateTheme);
+    };
+  }, []);
 
   return (
     <>
@@ -98,8 +137,15 @@ function Navbar() {
             ))}
           </ul>
 
-          <Link to="get-quote" duration={500} smooth={true} className="hidden sm:inline-flex justify-center rounded-lg text-sm font-semibold py-2 px-4 ms-auto lg:ms-0 me-4 order-1 bg-blue-600 text-white hover:bg-blue-700 cursor-pointer capitalize transition-all duration-150">request qoute</Link>
-
+          <div className="hidden sm:flex items-center order-1 ms-auto lg:ms-0 me-4 space-x-4">
+            <Link to="get-quote" duration={500} smooth={true} className="rounded-lg text-sm font-semibold py-2 px-4 bg-blue-600 text-white hover:bg-blue-700 cursor-pointer capitalize transition-all duration-150">request qoute</Link>
+            <button type="button" data-theme={document.documentElement.classList.contains('dark') ? 'light' : 'dark'} className="ms-4 sm:ms-0 ring-1 ring-gray-900/5 shadow-sm hover:bg-gray-50 dark:ring-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:shadow-highlight/4 group focus:outline-none focus-visible:ring-2 rounded-md focus-visible:ring-sky-500 dark:focus-visible:ring-2 dark:focus-visible:ring-gray-400"
+              onClick={toggleTheme}
+            >
+              <svg width="36" height="36" viewBox="-6 -6 36 36" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="stroke-sky-500 fill-sky-100 group-hover:stroke-sky-600 dark:stroke-gray-400 dark:fill-gray-400/20 dark:group-hover:stroke-gray-300">
+                <g className="dark:opacity-0"><path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"></path><path d="M12 4v.01M17.66 6.345l-.007.007M20.005 12.005h-.01M17.66 17.665l-.007-.007M12 20.01V20M6.34 17.665l.007-.007M3.995 12.005h.01M6.34 6.344l.007.007" fill="none"></path></g><g className="opacity-0 dark:opacity-100"><path d="M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"></path><path d="M12 3v1M18.66 5.345l-.828.828M21.005 12.005h-1M18.66 18.665l-.828-.828M12 21.01V20M5.34 18.666l.835-.836M2.995 12.005h1.01M5.34 5.344l.835.836" fill="none"></path></g></svg>
+            </button>
+          </div>
         </motion.div>
       </nav>
       <div
@@ -119,6 +165,12 @@ function Navbar() {
               <span className="self-center text-2xl font-semibold whitespace-nowrap">IT Tech Point</span>
             </Link>
 
+            <button type="button" data-theme={document.documentElement.classList.contains('dark') ? 'light' : 'dark'} className=" sm:hidden ms-4 sm:ms-0 ring-1 ring-gray-900/5 shadow-sm hover:bg-gray-50 dark:ring-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:shadow-highlight/4 group focus:outline-none focus-visible:ring-2 rounded-md focus-visible:ring-sky-500 dark:focus-visible:ring-2 dark:focus-visible:ring-gray-400"
+              onClick={toggleTheme}
+            >
+              <svg width="36" height="36" viewBox="-6 -6 36 36" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="stroke-sky-500 fill-sky-100 group-hover:stroke-sky-600 dark:stroke-gray-400 dark:fill-gray-400/20 dark:group-hover:stroke-gray-300">
+                <g className="dark:opacity-0"><path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"></path><path d="M12 4v.01M17.66 6.345l-.007.007M20.005 12.005h-.01M17.66 17.665l-.007-.007M12 20.01V20M6.34 17.665l.007-.007M3.995 12.005h.01M6.34 6.344l.007.007" fill="none"></path></g><g className="opacity-0 dark:opacity-100"><path d="M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"></path><path d="M12 3v1M18.66 5.345l-.828.828M21.005 12.005h-1M18.66 18.665l-.828-.828M12 21.01V20M5.34 18.666l.835-.836M2.995 12.005h1.01M5.34 5.344l.835.836" fill="none"></path></g></svg>
+            </button>
             <button className="navbar-close" onClick={closeMenu}>
               <HiX className='text-2xl hover:text-blue-600 dark:text-blue-600 dark:hover:text-neutral-50' />
             </button>
