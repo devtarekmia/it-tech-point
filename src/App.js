@@ -22,11 +22,11 @@ function App() {
         <section id='services' className='bg-slate-200 dark:bg-slate-900'>
           <Services />
         </section>
-        <section id='clients' className='bg-slate-200 dark:bg-slate-900 py-8'>
-          <Clients />
-        </section>
-        <section id='projects' className='bg-slate-200 dark:bg-slate-900 pb-20 sm:pb-32 md:pb-40'>
+        <section id='projects' className='bg-slate-200 dark:bg-slate-900 -mt-10 md:mt-0 pb-20 sm:pb-32 md:pb-40'>
           <Projects />
+        </section>
+        <section id='clients' className='bg-slate-200 dark:bg-slate-900 pb-20 sm:pb-32 md:pb-40'>
+          <Clients />
         </section>
         <section id='testimonial' className='bg-slate-200 dark:bg-slate-900 pb-20 sm:pb-32 md:pb-40'>
           <Reviews />

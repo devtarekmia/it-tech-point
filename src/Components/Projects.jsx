@@ -43,9 +43,9 @@ const Projects = () => {
     <>
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-3 md:px-5 lg:px-8 focus:outline-none">
         <h2 className="text-center font-extrabold leading-tight pb-4 text-3xl lg:text-4xl 2xl:text-5xl text-slate-800 dark:text-slate-50 mb-8 2xl:mb-16">Our Recent Projects</h2>
-        <div className="flex flex-col sm:flex-row flex-wrap justify-center">
+        <div className="flex flex-col sm:flex-row flex-wrap justify-center -mx-4">
           {recent_projects.map((item, i) => (
-            <div key={i} className="min-w-sm sm:max-w-sm 2xl:max-w-md bg-slate-50 border border-slate-200 rounded-lg shadow dark:bg-slate-800 dark:border-slate-700 m-4 hover:scale-105 transition-all duration-300">
+            <div key={i} className="min-w-sm sm:w-[45%] lg:w-[30%] 2xl:max-w-md bg-slate-50 border border-slate-200 rounded-lg shadow dark:bg-slate-800 dark:border-slate-700 m-4 hover:scale-105 transition-all duration-300">
               <img className="rounded-t-lg" src={item.image} alt="" />
               <div className="p-5">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-slate-900 dark:text-white">{item.title}</h5>
