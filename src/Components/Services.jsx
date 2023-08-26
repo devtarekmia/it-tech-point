@@ -25,7 +25,7 @@ const Services = () => {
   return (
     <>
       <div className=''>
-        <div className="max-w-screen-2xl px-4 lg:px-8 mx-auto">
+        <div className="max-w-screen-2xl px-4 sm:px-3 md:px-5 lg:px-8 mx-auto">
           <div className='bg-slate-100 rounded-xl z-50 -translate-y-40 lg:-translate-y-24 bg-light-gradient dark:bg-none dark:bg-slate-800 bg-no-repeat bg-cover' >
             <div className="px-8 xl:px-14 py-10 md:py-16 xl:p-20 w-full max-w-screen-2xl">
               <div className="flex flex-col md:flex-row space-y-16 md:space-x-16 md:space-y-0">

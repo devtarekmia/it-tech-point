@@ -40,7 +40,7 @@ function Navbar() {
 
   const navlinks = [
     {
-      path: 'about',
+      path: 'home',
       name: 'Who we are',
     },
     {
@@ -50,6 +50,10 @@ function Navbar() {
     {
       path: 'clients',
       name: 'Our clients',
+    },
+    {
+      path: 'testimonial',
+      name: 'Reviews',
     },
     {
       path: 'contact',
@@ -84,7 +88,7 @@ function Navbar() {
               <HiMenuAlt4 className='text-2xl navbtn hover:text-blue-600 dark:hover:text-neutral-50' />
             </button>
           </div>
-          <ul className={`hidden ms-auto text-center lg:flex lg:space-x-12 lg:me-12`}>
+          <ul className={`hidden ms-auto text-center lg:flex lg:space-x-8 lg:me-8`}>
             {navlinks.map((item, i) => (
               <li key={i} className='navbtn'>
                 <Link to={item.path} smooth={true} duration={500} className='cursor-pointer  hover:text-blue-600 text-sm font-semibold dark:text-blue-600 transition-all duration-150'>
@@ -135,8 +139,8 @@ function Navbar() {
         </motion.div>
       </div>
       <div className={`${footBtnShow ? 'bottom-14' : '-bottom-40'} fixed z-[99] right-8 2xl:right-14 transition-all duration-1000`}>
-        <Link to="home" smooth={true} duration={500} className='relative rounded-full mx-auto object-cover cursor-pointer grayscale text-blue-600 hover:grayscale-0'>
-          <HiOutlineChevronDoubleUp className='navbtn block text-xl animate-bounce hover:animate-none transition-all duration-300' />
+        <Link to="home" smooth={true} duration={500} className='relative rounded-full mx-auto object-cover cursor-pointer text-slate-700 dark:text-slate-400 hover:text-blue-600'>
+          <HiOutlineChevronDoubleUp className='navbtn block text-2xl animate-bounce hover:animate-none transition-all duration-300' />
         </Link>
       </div>
     </>

@@ -109,7 +109,7 @@ const Footer = () => {
         <div className="bg-slate-100 dark:bg-slate-700">
           <div className="mx-auto w-full max-w-screen-2xl py-6 md:flex md:items-center md:justify-between px-4 sm:px-6 lg:px-8">
             <div className='text-center'>
-              <span className="text-sm text-slate-500 dark:text-slate-300 sm:text-center">© 2023 <a href="https://flowbite.com/">IT TECH POINT</a>. All Rights Reserved.</span>
+              <span className="text-sm text-slate-500 dark:text-slate-300 sm:text-center">© 2023 <a href="/" className='hover:text-blue-600 transition-all duration-150'>IT TECH POINT</a>. All Rights Reserved.</span>
             </div>
             <div className="flex mt-4 space-x-5 items-center justify-center md:mt-0 text-slate-400">
               <span className='inline-flex items-center'>Made with <span className='slow-spin' title='React.JS'><DiReact className='mx-1 scale-150' /></span> by
